@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    android:background="@drawable/denim2"
+    tools:context="com.example.android.tic_tac_toe.GameResults">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/result_text"
+        android:textAllCaps="true"
+        android:layout_gravity="center"
+        android:textColor="#ffd700"
+        android:layout_marginTop="30dp"
+        android:textSize="40sp"
+        />
+
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:layout_gravity="center">
+
+        <TableRow>
+            <TextView
+                android:id="@+id/p1name"
+                android:text="@string/player_1_default_name"
+                android:textAlignment="center"
+                android:textColor="#ffff00"
+                android:background="#000638"
+                android:textSize="30sp"
+                android:fontFamily="serif"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:id="@+id/p2name"
+                android:text="@string/player_2_default_name"
+                android:textAlignment="center"
+                android:textColor="#ffff00"
+                android:background="#000638"
+                android:textSize="30sp"
+                android:fontFamily="serif"
+                android:layout_margin="5dp"/>
+
+            <TextView
+                android:text="Draw"
+                android:textAlignment="center"
+                android:textColor="#ffff00"
+                android:background="#000638"
+                android:textSize="30sp"
+                android:fontFamily="serif"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"/>
+        </TableRow>
+
+        <TableRow>
+        <TextView
+            android:id="@+id/p1wins"
+            android:text="@string/initial_games_played_0"
+            android:textAlignment="center"
+            android:textColor="#ffff00"
+            android:background="#000638"
+            android:textSize="30sp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp" />
+
+        <TextView
+            android:id="@+id/p2wins"
+            android:text="@string/initial_games_played_0"
+            android:textAlignment="center"
+            android:textColor="#ffff00"
+            android:background="#000638"
+            android:textSize="30sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"/>
+
+        <TextView
+            android:id="@+id/draws"
+            android:text="@string/initial_games_played_0"
+            android:textAlignment="center"
+            android:textColor="#ffff00"
+            android:background="#000638"
+            android:textSize="30sp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"/>
+
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/continue_button_text"
+        android:onClick="onClickContinue"
+        android:textAlignment="center"
+        android:background="#ffd700"
+        android:textColor="#000066"
+        android:textSize="30sp"
+        android:padding="6dp"
+        android:layout_marginTop="35dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.4"/>
+</LinearLayout>

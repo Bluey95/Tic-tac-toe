@@ -9,13 +9,39 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <meta-data
+            android:name="asset_statements"
+            android:resource="@string/asset_statements" />
+
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".GameActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".OneplayerActivity" />
+        <activity
+            android:name=".NameOfPlayer"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".GameResults"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NameOfPlayerWithComputer"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".FivePlayerActivity" />
+        <activity android:name=".SinglePlayerModeActivity" />
+        <activity android:name=".NameOfFivePlayerActivity" />
+        <activity android:name=".MultiPlayerModeActivity" />
+        <activity android:name=".NameOfPlayerFiveWithActivity" />
+        <activity android:name=".OnePlayerFiveActivity"></activity>
     </application>
 
 </manifest>
