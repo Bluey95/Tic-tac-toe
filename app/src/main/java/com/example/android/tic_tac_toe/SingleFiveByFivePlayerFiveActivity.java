@@ -16,18 +16,17 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
-public class OneplayerActivity extends AppCompatActivity {
-    int turn = 1;
-    int win = 0;
-    int gamov = 0;
+public class SingleFiveByFivePlayerFiveActivity extends AppCompatActivity {
+    int playerturn = 1;
+    int gamewin = 0;
+    int gamemove = 0;
     int flagEndGame=0;
     int flag;
     String displayTurn;
     GridLayout grid;
-    Button playBoard[][] = new Button[3][3];
-    Button tempBoard[][] = new Button[3][3];
-    int boardMatrix[][] = new int[3][3];
-    double probMatrix[][] = new double[3][3];
+    Button playBoard[][] = new Button[5][5];
+    int boardMatrix[][] = new int[5][5];
+    double probMatrix[][] = new double[5][5];
     TextView playerTurn;
     String player1Name;
     String player2Name;
@@ -38,16 +37,12 @@ public class OneplayerActivity extends AppCompatActivity {
     int player1Win = 0, player2Win = 0, draw = 0;
     int flipValue=0;
     AlertDialog.Builder builder;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_oneplayer);
+        setContentView(R.layout.activity_single_five_by_five_player_five);
         playerTurn = (TextView) findViewById(R.id.player);
         builder = new AlertDialog.Builder(this);
         Intent intent = getIntent();
@@ -66,52 +61,48 @@ public class OneplayerActivity extends AppCompatActivity {
             }
         }
         if(flipValue==1){
-            computerPlay();
-            turn=2;
+            androidPlay();
+            playerturn=2;
         }
-
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
+    //Method to Play
     public void playmove(View view) {
         int index = grid.indexOfChild(view);
         int i = index / 3;
         int j = index % 3;
         flag = 0;
-        if (turn == 1 && gamov == 0 && !(playBoard[i][j].getText().toString().equals("X")) && !(playBoard[i][j].getText().toString().equals("O"))) {
+        if (playerturn == 1 && gamemove == 0 && !(playBoard[i][j].getText().toString().equals("X")) && !(playBoard[i][j].getText().toString().equals("O"))) {
 
 
             if(flipValue==0){
-                displayTurn=player2Name + "'s turn (O)";
+                displayTurn=player2Name + "'s playerturn (O)";
                 //  Log.v("BoardMatrix",String.valueOf(boardMatrix[0][0])+" "+String.valueOf(boardMatrix[0][1])+" "+String.valueOf(boardMatrix[0][2])+" "+String.valueOf(boardMatrix[1][0])+" "+String.valueOf(boardMatrix[1][1])+" "+String.valueOf(boardMatrix[1][2])+" "+String.valueOf(boardMatrix[2][0])+" "+String.valueOf(boardMatrix[2][1])+" "+String.valueOf(boardMatrix[2][2]));
                 playerTurn.setText(displayTurn);
                 playBoard[i][j].setText("X");
                 boardMatrix[i][j]=1;
-                turn = 2;
+                playerturn = 2;
                 moveNumber++;
-                computerPlay();
-                turn = 1;
-                displayTurn=player1Name + "'s turn (X)";
+                androidPlay();
+                playerturn = 1;
+                displayTurn=player1Name + "'s playerturn (X)";
                 moveNumber++;
             }
 
 
 
-        } else if (turn == 2 && gamov == 0 && !(playBoard[i][j].getText().toString().equals("X")) && !(playBoard[i][j].getText().toString().equals("O"))) {
+        } else if (playerturn == 2 && gamemove == 0 && !(playBoard[i][j].getText().toString().equals("X")) && !(playBoard[i][j].getText().toString().equals("O"))) {
 
             if(flipValue==1){
-                displayTurn=player2Name + "'s turn (X)";
+                displayTurn=player2Name + "'s playerturn (X)";
                 playerTurn.setText(displayTurn);
                 playBoard[i][j].setText("O");
                 boardMatrix[i][j]=1;
-                turn = 1;
+                playerturn = 1;
                 moveNumber++;
-                computerPlay();
-                displayTurn=player1Name + "'s turn (O)";
-                turn = 2;
+                androidPlay();
+                displayTurn=player1Name + "'s playerturn (O)";
+                playerturn = 2;
                 moveNumber++;
 
             }
@@ -119,17 +110,17 @@ public class OneplayerActivity extends AppCompatActivity {
         }
 
         checkWin();
-        if (gamov == 1) {
-            if (win == 1) {
-                builder.setMessage(player1Name + " wins!").setTitle("Game over");
+        if (gamemove == 1) {
+            if (gamewin == 1) {
+                builder.setMessage(player1Name + " gamewins!").setTitle("Game over");
                 if(flagEndGame==0){
                     player1Win++;
                     counter++;
                 }
 
 
-            } else if (win == 2) {
-                builder.setMessage(player2Name + " wins!").setTitle("Game over");
+            } else if (gamewin == 2) {
+                builder.setMessage(player2Name + " gamewins!").setTitle("Game over");
                 if(flagEndGame==0){
                     player2Win++;
                     counter++;
@@ -162,7 +153,7 @@ public class OneplayerActivity extends AppCompatActivity {
 
 
         }
-        if (gamov == 0) {
+        if (gamemove == 0) {
             for (i = 0; i < 3; i++) {
                 for (j = 0; j < 3; j++) {
                     if (!playBoard[i][j].getText().toString().equals("X") && !playBoard[i][j].getText().toString().equals("O")) {
@@ -223,8 +214,8 @@ public class OneplayerActivity extends AppCompatActivity {
 
 
     }
-    public void computerPlay(){
-        int currentTurn = turn;
+    public void androidPlay(){
+        int currentTurn = playerturn;
         int currentMove = moveNumber;
         int i=0,j=0;
         int moveChoice=0;
@@ -233,11 +224,11 @@ public class OneplayerActivity extends AppCompatActivity {
 
         int counter=0;
         double sum=0;
-        if(turn==1){
-            turn=2;
+        if(playerturn==1){
+            playerturn=2;
         }
         else{
-            turn=1;
+            playerturn=1;
         }
         for(int c=0;c<9;c++){
             i=c/3;
@@ -257,23 +248,23 @@ public class OneplayerActivity extends AppCompatActivity {
                     playBoard[i][j].setText("X");
                 else
                     playBoard[i][j].setText("O");
-                if (checkWinComp() == 2 && flipValue == 0) {
+                if (checkWinAndroid() == 2 && flipValue == 0) {
                     flag=1;
                     playBoard[i][j].setText(" ");
                     boardMatrix[i][j] = 0;
                     break;
-                } else if (checkWinComp() == 2 && flipValue == 1) {
+                } else if (checkWinAndroid() == 2 && flipValue == 1) {
                     flag=1;
                     playBoard[i][j].setText(" ");
                     boardMatrix[i][j] = 0;
                     break;
                 }
-                if (checkWinComp() == 1 && flipValue == 1) {
+                if (checkWinAndroid() == 1 && flipValue == 1) {
                     playBoard[i][j].setText(" ");
                     //  Log.v("CP","I came to the first if");
                     boardMatrix[i][j] = 0;
                     continue;
-                } else if (checkWinComp() == 1 && flipValue == 0) {
+                } else if (checkWinAndroid() == 1 && flipValue == 0) {
                     playBoard[i][j].setText(" ");
                     //   Log.v("CP","I came to the second if");
                     boardMatrix[i][j] = 0;
@@ -319,19 +310,19 @@ public class OneplayerActivity extends AppCompatActivity {
         else{
             moveChoice=3*i+j;
         }
-        turn = currentTurn;
+        playerturn = currentTurn;
         moveNumber = currentMove;
         int xCoord=moveChoice/3;
         int yCoord=moveChoice%3;
         boardMatrix[xCoord][yCoord]=1;
         if(flipValue==0){
             playBoard[xCoord][yCoord].setText("O");
-            displayTurn=player1Name+"'s turn (X)";
+            displayTurn=player1Name+"'s playerturn (X)";
             playerTurn.setText(displayTurn);
         }
         else{
             playBoard[xCoord][yCoord].setText("X");
-            displayTurn=player1Name+"'s turn (O)";
+            displayTurn=player1Name+"'s playerturn (O)";
             playerTurn.setText(displayTurn);
         }
 
@@ -352,50 +343,50 @@ public class OneplayerActivity extends AppCompatActivity {
                 flagCheckGameNotOver=1;
                 boardMatrix[i][j]=1;
 
-                if(turn==1)
+                if(playerturn==1)
                     playBoard[i][j].setText("X");
                 else
                     playBoard[i][j].setText("O");
-                if(checkWinComp()==2 && flipValue==0){
+                if(checkWinAndroid()==2 && flipValue==0){
                     sum=1;
-                    //    Log.v("INCA","First If "+String.valueOf(i)+" "+String.valueOf(j)+" "+String.valueOf(level)+" "+String.valueOf(turn));
+                    //    Log.v("INCA","First If "+String.valueOf(i)+" "+String.valueOf(j)+" "+String.valueOf(level)+" "+String.valueOf(playerturn));
                     playBoard[i][j].setText(" ");
                     boardMatrix[i][j]=0;
 
                     return sum;
                 }
-                else if(checkWinComp()==2 && flipValue==1){
+                else if(checkWinAndroid()==2 && flipValue==1){
                     sum=1;
-                    //    Log.v("INCA","Second If "+String.valueOf(i)+" "+String.valueOf(j)+" "+String.valueOf(level)+" "+String.valueOf(turn));
+                    //    Log.v("INCA","Second If "+String.valueOf(i)+" "+String.valueOf(j)+" "+String.valueOf(level)+" "+String.valueOf(playerturn));
                     playBoard[i][j].setText(" ");
                     boardMatrix[i][j]=0;
 
                     return sum;
                 }
-                else if(checkWinComp()==1 && flipValue==1){
+                else if(checkWinAndroid()==1 && flipValue==1){
                     sum=0;
-                    //    Log.v("INCA","Third Iff "+String.valueOf(i)+" "+String.valueOf(j)+" "+String.valueOf(level)+" "+String.valueOf(turn));
+                    //    Log.v("INCA","Third Iff "+String.valueOf(i)+" "+String.valueOf(j)+" "+String.valueOf(level)+" "+String.valueOf(playerturn));
                     playBoard[i][j].setText(" ");
                     boardMatrix[i][j]=0;
 
                     return sum;
                 }
-                else if(checkWinComp()==1 && flipValue==0){
+                else if(checkWinAndroid()==1 && flipValue==0){
                     sum=0;
-                    //    Log.v("INCA","Fourth If "+String.valueOf(i)+" "+String.valueOf(j)+" "+String.valueOf(level)+" "+String.valueOf(turn));
+                    //    Log.v("INCA","Fourth If "+String.valueOf(i)+" "+String.valueOf(j)+" "+String.valueOf(level)+" "+String.valueOf(playerturn));
                     playBoard[i][j].setText(" ");
                     boardMatrix[i][j]=0;
 
                     return sum;
                 }
                 else {
-                    //    Log.v("INCA","In Else "+String.valueOf(i)+" "+String.valueOf(j)+" "+String.valueOf(level)+" "+String.valueOf(turn));
+                    //    Log.v("INCA","In Else "+String.valueOf(i)+" "+String.valueOf(j)+" "+String.valueOf(level)+" "+String.valueOf(playerturn));
                     counter++;
-                    if(turn==1){
-                        turn=2;
+                    if(playerturn==1){
+                        playerturn=2;
                     }
                     else{
-                        turn=1;
+                        playerturn=1;
                     }
                     level++;
                     double value=computerAnalyze();
@@ -406,11 +397,11 @@ public class OneplayerActivity extends AppCompatActivity {
                 }
                 playBoard[i][j].setText(" ");
                 boardMatrix[i][j]=0;
-                if(turn==1){
-                    turn=2;
+                if(playerturn==1){
+                    playerturn=2;
                 }
                 else{
-                    turn=1;
+                    playerturn=1;
                 }
             }
 
@@ -425,9 +416,9 @@ public class OneplayerActivity extends AppCompatActivity {
 
     public void newGame(View view) {
 
-        win = 0;
-        gamov = 0;
-        turn=1;
+        gamewin = 0;
+        gamemove = 0;
+        playerturn=1;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 playBoard[i][j].setText(" ");
@@ -439,11 +430,11 @@ public class OneplayerActivity extends AppCompatActivity {
         if(flipValue==0){
             if(flagEndGame==1){
                 flipValue=1;
-                displayTurn=player2Name + "'s turn (X)";
+                displayTurn=player2Name + "'s playerturn (X)";
                 playerTurn.setText(displayTurn);
             }
             else{
-                displayTurn=player1Name + "'s turn (X)";
+                displayTurn=player1Name + "'s playerturn (X)";
                 playerTurn.setText(displayTurn);
             }
 
@@ -452,11 +443,11 @@ public class OneplayerActivity extends AppCompatActivity {
         else if(flipValue==1 ){
             if(flagEndGame==1){
                 flipValue=0;
-                displayTurn=player1Name + "'s turn (X)";
+                displayTurn=player1Name + "'s playerturn (X)";
                 playerTurn.setText(displayTurn);
             }
             else{
-                displayTurn=player2Name + "'s turn (X)";
+                displayTurn=player2Name + "'s playerturn (X)";
                 playerTurn.setText(displayTurn);
             }
 
@@ -468,7 +459,7 @@ public class OneplayerActivity extends AppCompatActivity {
             //    Log.e("INNEW","I am here to create a new game with computer x!");
             randomPlay();
             //    Log.e("INNEW","I am out!");
-            turn=2;
+            playerturn=2;
         }
     }
 
@@ -477,19 +468,19 @@ public class OneplayerActivity extends AppCompatActivity {
             if (playBoard[i][0].getText().toString().equals(playBoard[i][1].getText().toString())
                     && playBoard[i][0].getText().toString().equals(playBoard[i][2].getText().toString())) {
                 if (playBoard[i][0].getText().toString().equals("X")) {
-                    gamov = 1;
+                    gamemove = 1;
                     if(flipValue==0)
-                        win = 1;
+                        gamewin = 1;
                     else if(flipValue==1)
-                        win=2;
+                        gamewin=2;
 
 
                 } else if (playBoard[i][0].getText().toString().equals("O")) {
-                    gamov = 1;
+                    gamemove = 1;
                     if(flipValue==0)
-                        win = 2;
+                        gamewin = 2;
                     else if(flipValue==1)
-                        win=1;
+                        gamewin=1;
 
                 }
                 if (!playBoard[i][0].getText().toString().equals(" ")) {
@@ -502,19 +493,19 @@ public class OneplayerActivity extends AppCompatActivity {
             }
             if (playBoard[0][i].getText().toString().equals(playBoard[1][i].getText().toString()) && playBoard[0][i].getText().toString().equals(playBoard[2][i].getText().toString())) {
                 if (playBoard[0][i].getText().toString().equals("X")) {
-                    gamov = 1;
+                    gamemove = 1;
                     if(flipValue==0)
-                        win = 1;
+                        gamewin = 1;
                     else if(flipValue==1)
-                        win=2;
+                        gamewin=2;
 
 
                 } else if (playBoard[0][i].getText().toString().equals("O")) {
-                    gamov = 1;
+                    gamemove = 1;
                     if(flipValue==0)
-                        win = 2;
+                        gamewin = 2;
                     else if(flipValue==1)
-                        win=1;
+                        gamewin=1;
 
                 }
                 if (!playBoard[0][i].getText().toString().equals(" ")) {
@@ -529,19 +520,19 @@ public class OneplayerActivity extends AppCompatActivity {
         }
         if (playBoard[0][0].getText().toString().equals(playBoard[1][1].getText().toString()) && playBoard[0][0].getText().toString().equals(playBoard[2][2].getText().toString())) {
             if (playBoard[0][0].getText().toString().equals("X")) {
-                gamov = 1;
+                gamemove = 1;
                 if(flipValue==0)
-                    win = 1;
+                    gamewin = 1;
                 else if(flipValue==1)
-                    win=2;
+                    gamewin=2;
 
 
             } else if (playBoard[0][0].getText().toString().equals("O")) {
-                gamov = 1;
+                gamemove = 1;
                 if(flipValue==0)
-                    win = 2;
+                    gamewin = 2;
                 else if(flipValue==1)
-                    win=1;
+                    gamewin=1;
 
             }
             if (!playBoard[0][0].getText().toString().equals(" ")) {
@@ -554,19 +545,19 @@ public class OneplayerActivity extends AppCompatActivity {
         }
         if (playBoard[0][2].getText().toString().equals(playBoard[1][1].getText().toString()) && playBoard[0][2].getText().toString().equals(playBoard[2][0].getText().toString())) {
             if (playBoard[0][2].getText().toString().equals("X")) {
-                gamov = 1;
+                gamemove = 1;
                 if(flipValue==0)
-                    win = 1;
+                    gamewin = 1;
                 else if(flipValue==1)
-                    win=2;
+                    gamewin=2;
 
 
             } else if (playBoard[0][2].getText().toString().equals("O")) {
-                gamov = 1;
+                gamemove = 1;
                 if(flipValue==0)
-                    win = 2;
+                    gamewin = 2;
                 else if(flipValue==1)
-                    win=1;
+                    gamewin=1;
 
             }
             if (!playBoard[2][0].getText().toString().equals(" ")) {
@@ -579,7 +570,7 @@ public class OneplayerActivity extends AppCompatActivity {
         }
     }
 
-    public int checkWinComp() {
+    public int checkWinAndroid() {
         for (int i = 0; i < 3; i++) {
             if (playBoard[i][0].getText().toString().equals(playBoard[i][1].getText().toString()) && playBoard[i][0].getText().toString().equals(playBoard[i][2].getText().toString())) {
                 if (playBoard[i][0].getText().toString().equals("X")) {
@@ -669,47 +660,8 @@ public class OneplayerActivity extends AppCompatActivity {
         return 0;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "PlayGame Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://com.example.android.tic_tac_toe/http/host/path")
-        );
-        AppIndex.AppIndexApi.start(client, viewAction);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "PlayGame Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://com.example.android.tic_tac_toe/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
-    }
     public void newMatch(View view){
-        Intent intent = new Intent(this,NameOfPlayerWithComputer.class);
+        Intent intent = new Intent(this,SingleThreeByThreeNameOfPlayer.class);
         if(intent.resolveActivity(getPackageManager())!=null){
             startActivity(intent);
             finish();

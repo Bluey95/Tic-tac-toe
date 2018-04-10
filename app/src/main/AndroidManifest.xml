@@ -23,25 +23,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".GameActivity"
+            android:name=".TwoThreeByThreeGameActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".OneplayerActivity" />
+        <activity android:name=".SingleThreeByThreePlayerActivity" />
         <activity
-            android:name=".NameOfPlayer"
+            android:name=".TwoThreeByThreeNameOfPlayer"
             android:screenOrientation="portrait" />
         <activity
             android:name=".GameResults"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".NameOfPlayerWithComputer"
+            android:name=".SingleThreeByThreeNameOfPlayer"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".FivePlayerActivity" />
-        <activity android:name=".SinglePlayerModeActivity" />
-        <activity android:name=".NameOfFivePlayerActivity" />
-        <activity android:name=".MultiPlayerModeActivity" />
-        <activity android:name=".NameOfPlayerFiveWithActivity" />
-        <activity android:name=".OnePlayerFiveActivity"></activity>
+        <activity android:name=".TwoFiveByFivePlayerActivity" />
+        <activity android:name=".SinglePlayerGameModeActivity" />
+        <activity android:name=".TwoFiveByFiveNameOfPlayerActivity" />
+        <activity android:name=".TwoPlayerGameModeActivity" />
+        <activity android:name=".SingleFiveByFiveNameOfPlayerActivity" />
+        <activity android:name=".SingleFiveByFivePlayerFiveActivity"></activity>
     </application>
 
 </manifest>

@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
-    android:background="#330000"
-    tools:context="com.example.android.tic_tac_toe.NameOfFivePlayerActivity"
+    android:background="@drawable/denim2"
+    tools:context="com.example.android.tic_tac_toe.TwoFiveByFiveNameOfPlayerActivity"
     android:fillViewport="true">
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -15,31 +16,32 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        android:background="#330000"
+        android:background="@drawable/denim2"
         tools:context="com.example.android.tic_tac_toe.PlayerName">
+        
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
-
             android:background="@android:color/transparent"/>
+        
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:text="@string/ask_player1name_text"
-            android:textColor="#53ff1a"
-            android:textSize="20sp"
-            />
+            android:textColor="#ffd700"
+            android:textSize="20sp" />
+        
         <EditText
             android:id="@+id/player1"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:hint="@string/player1name_text_hint"
-            android:textColor="#00ffff"
-            android:textColorHint="#006666"
-            android:backgroundTint="#006666"
+            android:textColor="#cccedf"
+            android:textColorHint="#ddd520"
+            android:backgroundTint="#ddd520"
             android:layout_marginBottom="20dp"/>
         <TextView
             android:layout_width="match_parent"
@@ -55,9 +57,9 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:hint="@string/player2name_text_hint"
-            android:textColor="#00ffff"
-            android:textColorHint="#006666"
-            android:backgroundTint="#006666"
+            android:textColor="#cccedf"
+            android:textColorHint="#ddd520"
+            android:backgroundTint="#ddd520"
 
             android:layout_marginBottom="20dp"
             />
@@ -66,9 +68,9 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:text="@string/ask_numofgames_text"
-            android:textColor="#53ff1a"
-            android:textSize="20sp"
-            />
+            android:textColor="#ffd700"
+            android:textSize="20sp" />
+
         <EditText
             android:id="@+id/numberOfG"
             android:layout_width="match_parent"
@@ -76,12 +78,10 @@
             android:layout_weight="1"
             android:hint="@string/number_of_games_hint"
             android:inputType="number"
-            android:textColor="#00ffff"
-            android:textColorHint="#006666"
-            android:backgroundTint="#006666"
-
-            android:layout_marginBottom="20dp"
-            />
+            android:textColor="#cccedf"
+            android:textColorHint="#ddd520"
+            android:backgroundTint="#ddd520"
+            android:layout_marginBottom="20dp" />
 
 
         <Button
@@ -94,12 +94,12 @@
             android:textColor="#000066"
             android:textSize="16sp"
             android:onClick="submitName"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
-            android:background="@android:color/transparent"
-            />
+            android:background="@android:color/transparent" />
 
 
     </LinearLayout>

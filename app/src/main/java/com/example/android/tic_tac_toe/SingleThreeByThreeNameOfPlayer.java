@@ -1,19 +1,17 @@
 package com.example.android.tic_tac_toe;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
-public class NameOfPlayerWithComputer extends AppCompatActivity {
+public class SingleThreeByThreeNameOfPlayer extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_name_of_player_with_computer);
+        setContentView(R.layout.activity_single_three_by_three_name_of_player);
 
 
     }
@@ -43,7 +41,7 @@ public class NameOfPlayerWithComputer extends AppCompatActivity {
             player1NameBox.setText("Human");
         }
 
-        Intent intent = new Intent(this, OneplayerActivity.class);
+        Intent intent = new Intent(this, SingleThreeByThreePlayerActivity.class);
         intent.putExtra("Player 1",player1NameText);
         intent.putExtra("Number",number);
         if(intent.resolveActivity(getPackageManager())!=null){

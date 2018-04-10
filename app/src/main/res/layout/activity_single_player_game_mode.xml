@@ -8,8 +8,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#330000"
-    tools:context="com.example.android.tic_tac_toe.MultiPlayerModeActivity">
+    android:background="@drawable/denim2"
+    tools:context="com.example.android.tic_tac_toe.SinglePlayerGameModeActivity">
 
     <TextView
         android:layout_width="match_parent"
@@ -18,21 +18,23 @@
         android:textAllCaps="true"
         android:textAlignment="center"
         android:textSize="56sp"
-        android:textColor="#ff66ff"
+        android:textColor="#FFD700"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="24dp"
         />
+
+
     <Button
         android:id="@+id/threeMode"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="60dp"
         android:text="3 X 3"
         android:textSize="40sp"
         android:onClick="threeMode"
-        android:background="#66ffff"
-        android:textColor="#003300"
+        android:background="#FFD700"
+        android:textColor="#000638"
         android:padding="10dp"/>
     <Button
         android:id="@+id/fiveMode"
@@ -43,8 +45,8 @@
         android:text="5 X 5"
         android:textSize="40sp"
         android:onClick="fiveMode"
-        android:background="#66ffff"
-        android:textColor="#003300"
+        android:background="#FFD700"
+        android:textColor="#000638"
         android:padding="10dp"/>
 
 </LinearLayout>

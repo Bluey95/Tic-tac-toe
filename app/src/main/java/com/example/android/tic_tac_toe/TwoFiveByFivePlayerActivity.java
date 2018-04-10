@@ -16,7 +16,7 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
-public class GameActivity extends AppCompatActivity {
+public class TwoFiveByFivePlayerActivity extends AppCompatActivity {
 
     int turn = 1;
     int win = 0;
@@ -25,7 +25,7 @@ public class GameActivity extends AppCompatActivity {
     int flag;
     String displayTurn;
     GridLayout grid;
-    Button playBoard[][] = new Button[3][3];
+    Button playBoard[][] = new Button[5][5];
     TextView playerTurn;
     String player1Name;
     String player2Name;
@@ -44,7 +44,7 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
+        setContentView(R.layout.activity_two_five_by_five_player);
 
         playerTurn = (TextView) findViewById(R.id.player);
         builder = new AlertDialog.Builder(this);
@@ -57,9 +57,9 @@ public class GameActivity extends AppCompatActivity {
         displayTurn=player1Name + "'s turn (X)";
         playerTurn.setText(displayTurn);
 
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                playBoard[i][j] = (Button) grid.getChildAt(3 * i + j);
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                playBoard[i][j] = (Button) grid.getChildAt(5 * i + j);
             }
         }
 
@@ -70,8 +70,8 @@ public class GameActivity extends AppCompatActivity {
 
     public void playmove(View view) {
         int index = grid.indexOfChild(view);
-        int i = index / 3;
-        int j = index % 3;
+        int i = index / 5;
+        int j = index % 5;
         flag = 0;
         if (turn == 1 && gamov == 0 && !(playBoard[i][j].getText().toString().equals("X")) && !(playBoard[i][j].getText().toString().equals("O"))) {
 
@@ -145,8 +145,8 @@ public class GameActivity extends AppCompatActivity {
 
         }
         if (gamov == 0) {
-            for (i = 0; i < 3; i++) {
-                for (j = 0; j < 3; j++) {
+            for (i = 0; i < 5; i++) {
+                for (j = 0; j < 5; j++) {
                     if (!playBoard[i][j].getText().toString().equals("X") && !playBoard[i][j].getText().toString().equals("O")) {
                         flag = 1;
                         break;
@@ -197,8 +197,8 @@ public class GameActivity extends AppCompatActivity {
         win = 0;
         gamov = 0;
         turn=1;
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
                 playBoard[i][j].setText(" ");
                 playBoard[i][j].setTextColor(Color.WHITE);
             }
@@ -235,8 +235,8 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void checkWin() {
-        for (int i = 0; i < 3; i++) {
-            if (playBoard[i][0].getText().toString().equals(playBoard[i][1].getText().toString()) && playBoard[i][0].getText().toString().equals(playBoard[i][2].getText().toString())) {
+        for (int i = 0; i < 5; i++) {
+            if (playBoard[i][0].getText().toString().equals(playBoard[i][1].getText().toString()) && playBoard[i][0].getText().toString().equals(playBoard[i][2].getText().toString()) && playBoard[i][0].getText().toString().equals(playBoard[i][3].getText().toString()) && playBoard[i][0].getText().toString().equals(playBoard[i][4].getText().toString())) {
                 if (playBoard[i][0].getText().toString().equals("X")) {
                     gamov = 1;
                     if(flipValue==0)
@@ -257,11 +257,13 @@ public class GameActivity extends AppCompatActivity {
                     playBoard[i][0].setTextColor(Color.RED);
                     playBoard[i][1].setTextColor(Color.RED);
                     playBoard[i][2].setTextColor(Color.RED);
+                    playBoard[i][3].setTextColor(Color.RED);
+                    playBoard[i][4].setTextColor(Color.RED);
 
                 }
 
             }
-            if (playBoard[0][i].getText().toString().equals(playBoard[1][i].getText().toString()) && playBoard[0][i].getText().toString().equals(playBoard[2][i].getText().toString())) {
+            if (playBoard[0][i].getText().toString().equals(playBoard[1][i].getText().toString()) && playBoard[0][i].getText().toString().equals(playBoard[2][i].getText().toString()) && playBoard[0][i].getText().toString().equals(playBoard[3][i].getText().toString()) && playBoard[0][i].getText().toString().equals(playBoard[4][i].getText().toString())) {
                 if (playBoard[0][i].getText().toString().equals("X")) {
                     gamov = 1;
                     if(flipValue==0)
@@ -282,13 +284,15 @@ public class GameActivity extends AppCompatActivity {
                     playBoard[0][i].setTextColor(Color.RED);
                     playBoard[1][i].setTextColor(Color.RED);
                     playBoard[2][i].setTextColor(Color.RED);
+                    playBoard[3][i].setTextColor(Color.RED);
+                    playBoard[4][i].setTextColor(Color.RED);
                 }
 
             }
 
 
         }
-        if (playBoard[0][0].getText().toString().equals(playBoard[1][1].getText().toString()) && playBoard[0][0].getText().toString().equals(playBoard[2][2].getText().toString())) {
+        if (playBoard[0][0].getText().toString().equals(playBoard[1][1].getText().toString()) && playBoard[0][0].getText().toString().equals(playBoard[2][2].getText().toString()) && playBoard[0][0].getText().toString().equals(playBoard[3][3].getText().toString()) && playBoard[0][0].getText().toString().equals(playBoard[4][4].getText().toString())) {
             if (playBoard[0][0].getText().toString().equals("X")) {
                 gamov = 1;
                 if(flipValue==0)
@@ -309,12 +313,17 @@ public class GameActivity extends AppCompatActivity {
                 playBoard[0][0].setTextColor(Color.RED);
                 playBoard[1][1].setTextColor(Color.RED);
                 playBoard[2][2].setTextColor(Color.RED);
+                playBoard[3][3].setTextColor(Color.RED);
+                playBoard[4][4].setTextColor(Color.RED);
             }
 
 
         }
-        if (playBoard[0][2].getText().toString().equals(playBoard[1][1].getText().toString()) && playBoard[0][2].getText().toString().equals(playBoard[2][0].getText().toString())) {
-            if (playBoard[0][2].getText().toString().equals("X")) {
+        if (playBoard[0][4].getText().toString().equals(playBoard[1][3].getText().toString())
+                && playBoard[0][4].getText().toString().equals(playBoard[2][2].getText().toString())
+                && playBoard[0][4].getText().toString().equals(playBoard[3][1].getText().toString())
+                && playBoard[0][4].getText().toString().equals(playBoard[4][0].getText().toString())) {
+            if (playBoard[0][4].getText().toString().equals("X")) {
                 gamov = 1;
                 if(flipValue==0)
                     win = 1;
@@ -322,7 +331,7 @@ public class GameActivity extends AppCompatActivity {
                     win=2;
 
 
-            } else if (playBoard[0][2].getText().toString().equals("O")) {
+            } else if (playBoard[0][4].getText().toString().equals("O")) {
                 gamov = 1;
                 if(flipValue==0)
                     win = 2;
@@ -330,10 +339,12 @@ public class GameActivity extends AppCompatActivity {
                     win=1;
 
             }
-            if (!playBoard[2][0].getText().toString().equals(" ")) {
-                playBoard[2][0].setTextColor(Color.RED);
-                playBoard[1][1].setTextColor(Color.RED);
-                playBoard[0][2].setTextColor(Color.RED);
+            if (!playBoard[4][0].getText().toString().equals(" ")) {
+                playBoard[4][0].setTextColor(Color.RED);
+                playBoard[3][1].setTextColor(Color.RED);
+                playBoard[2][2].setTextColor(Color.RED);
+                playBoard[1][3].setTextColor(Color.RED);
+                playBoard[0][4].setTextColor(Color.RED);
             }
 
 
@@ -380,7 +391,7 @@ public class GameActivity extends AppCompatActivity {
         client.disconnect();
     }
     public void newMatch(View view){
-        Intent intent = new Intent(this, NameOfPlayer.class);
+        Intent intent = new Intent(this, TwoThreeByThreeNameOfPlayer.class);
         if(intent.resolveActivity(getPackageManager())!=null){
             startActivity(intent);
             finish();

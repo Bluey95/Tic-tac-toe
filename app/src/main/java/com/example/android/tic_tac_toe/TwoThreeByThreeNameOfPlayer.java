@@ -4,18 +4,14 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 
-public class NameOfPlayer extends AppCompatActivity{
+public class TwoThreeByThreeNameOfPlayer extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_name_of_player);
+        setContentView(R.layout.activity_two_three_by_three_name_of_player);
     }
 
 
@@ -49,7 +45,7 @@ public class NameOfPlayer extends AppCompatActivity{
             player2NameText="Player 2";
             player2NameBox.setText(R.string.player_2_default_name);
         }
-        Intent intent = new Intent(this, GameActivity.class);
+        Intent intent = new Intent(this, TwoThreeByThreeGameActivity.class);
         intent.putExtra("Player 1",player1NameText);
         intent.putExtra("Player 2",player2NameText);
         intent.putExtra("Number",number);

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/denim2"
-    tools:context="com.example.android.tic_tac_toe.NameOfPlayerWithComputer"
+    tools:context="com.example.android.tic_tac_toe.SingleThreeByThreeNameOfPlayer"
     android:fillViewport="true">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -76,6 +76,7 @@
             android:textSize="16sp"
             android:onClick="submitName"
             />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"

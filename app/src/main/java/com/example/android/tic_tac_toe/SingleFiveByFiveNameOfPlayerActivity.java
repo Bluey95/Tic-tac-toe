@@ -6,12 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-public class NameOfPlayerFiveWithActivity extends AppCompatActivity {
+public class SingleFiveByFiveNameOfPlayerActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_name_of_player_five_with);
+        setContentView(R.layout.activity_single_five_by_five_name_of_player);
     }
 
     public void submitName(View view) {
@@ -40,7 +40,7 @@ public class NameOfPlayerFiveWithActivity extends AppCompatActivity {
             player1NameBox.setText("Human");
         }
 
-        Intent intent = new Intent(this, OnePlayerFiveActivity.class);
+        Intent intent = new Intent(this, SingleFiveByFivePlayerFiveActivity.class);
         intent.putExtra("Player 1",player1NameText);
         intent.putExtra("Number",number);
         if(intent.resolveActivity(getPackageManager())!=null){

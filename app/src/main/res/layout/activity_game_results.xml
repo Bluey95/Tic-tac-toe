@@ -10,6 +10,7 @@
     android:orientation="vertical"
     android:background="@drawable/denim2"
     tools:context="com.example.android.tic_tac_toe.GameResults">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
@@ -19,8 +20,7 @@
         android:layout_gravity="center"
         android:textColor="#ffd700"
         android:layout_marginTop="30dp"
-        android:textSize="40sp"
-        />
+        android:textSize="40sp" />
 
 
     <TableLayout
